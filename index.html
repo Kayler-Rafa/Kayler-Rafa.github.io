@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rafael Diniz · Portfólio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfólio de Rafael Diniz: desenvolvedor de sistemas e engenharia de dados em Recife.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Martian+Mono:wght@400;600;700&display=swap">
+<style>
+  /* Layout: a terminal session that reads like a datasheet — shell prompts head each section,
+     box-drawing frames hold the work, one live ASCII field in the hero. */
+  :root {
+    --bg: #0b1322;
+    --surface: #0f1a2d;
+    --raised: #14223a;
+    --line: #22344f;
+    --fg: #e6ecf4;
+    --muted: #8a9bb3;
+    --teal: #2dd4bf;
+    --amber: #f5b83d;
+    --shot-ring: #2b4163;
+    --display: "Martian Mono", "JetBrains Mono", ui-monospace, monospace;
+    --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    --wrap: 1120px;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f2f4f7; --surface: #ffffff; --raised: #e9eef5; --line: #cdd6e2;
+      --fg: #0e1a2b; --muted: #52627a; --teal: #0b7d72; --amber: #9a5f00; --shot-ring: #b9c6d8;
+      color-scheme: light;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f2f4f7; --surface: #ffffff; --raised: #e9eef5; --line: #cdd6e2;
+    --fg: #0e1a2b; --muted: #52627a; --teal: #0b7d72; --amber: #9a5f00; --shot-ring: #b9c6d8;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 400 16px/1.6 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+    z-index: 10; background: var(--bg);
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  ::selection { background: var(--teal); color: var(--bg); }
+  :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+
+  .wrap {
+    max-width: var(--wrap); margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .mono { font-family: var(--mono); }
+
+  /* ── top bar ─────────────────────────────── */
+  .bar {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar .wrap { display: flex; align-items: center; gap: 24px; padding-block: 12px; }
+  .brand { font: 500 14px var(--mono); text-decoration: none; white-space: nowrap; }
+  .brand b { color: var(--teal); font-weight: 500; }
+  .nav { display: flex; gap: 20px; margin-left: auto; font: 13px var(--mono); }
+  .nav a { text-decoration: none; color: var(--muted); }
+  .nav a:hover { color: var(--fg); }
+  .theme {
+    font: 13px var(--mono); color: var(--muted); background: none; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 4px; padding: 4px 8px;
+  }
+  .theme:hover { color: var(--fg); border-color: var(--muted); }
+  @media (max-width: 720px) { .nav { display: none; } .theme { margin-left: auto; } }
+
+  /* ── hero ─────────────────────────────── */
+  .hero .wrap {
+    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 48px; align-items: center; padding-block: 72px 64px;
+  }
+  .prompt { font: 14px var(--mono); color: var(--muted); margin: 0 0 18px; }
+  .prompt .u { color: var(--teal); }
+  .prompt .p { color: var(--amber); }
+  h1 {
+    font: 700 clamp(34px, 5.4vw, 60px)/1.02 var(--display);
+    letter-spacing: -0.02em; margin: 0; text-wrap: balance;
+  }
+  .role { font: 500 clamp(15px, 1.8vw, 18px) var(--mono); color: var(--teal); margin: 16px 0 22px; }
+  .lede { max-width: 56ch; color: var(--muted); margin: 0; font-size: 17px; }
+  .lede strong { color: var(--fg); font-weight: 500; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .btn {
+    font: 500 14px var(--mono); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px; border: 1px solid var(--line); border-radius: 4px; color: var(--fg);
+    background: var(--surface); transition: border-color .15s, transform .15s;
+  }
+  .btn:hover { border-color: var(--teal); transform: translateY(-1px); }
+  .btn.primary { background: var(--teal); color: var(--bg); border-color: var(--teal); }
+  .btn.primary:hover { filter: brightness(1.08); }
+
+  .term {
+    border: 1px solid var(--line); border-radius: 6px; background: var(--surface);
+    overflow: hidden; min-width: 0;
+  }
+  .term-head {
+    display: flex; align-items: center; gap: 10px; padding: 9px 14px;
+    border-bottom: 1px solid var(--line); font: 12px var(--mono); color: var(--muted);
+  }
+  .term-head .dots { letter-spacing: 2px; color: var(--line); }
+  .term-head .path { margin-left: auto; }
+  #field { display: block; width: 100%; height: 300px; }
+  .term-foot {
+    display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 10px 14px; border-top: 1px solid var(--line);
+    font: 12px var(--mono); color: var(--muted);
+  }
+  .term-foot span b { color: var(--fg); font-weight: 500; }
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 48px; gap: 36px; }
+    #field { height: 220px; }
+  }
+
+  /* ── sections ─────────────────────────────── */
+  section { border-top: 1px solid var(--line); }
+  section > .wrap { padding-block: 64px; }
+  .sh { margin-bottom: 36px; }
+  .sh .cmd { font: 14px var(--mono); color: var(--muted); margin: 0 0 8px; }
+  .sh .cmd .p { color: var(--amber); }
+  h2 { font: 600 clamp(24px, 3vw, 32px)/1.15 var(--display); letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+  .sh p.note { color: var(--muted); max-width: 60ch; margin: 10px 0 0; }
+
+  /* project: a framed record with a label cut into its top border */
+  .projects { display: grid; gap: 40px; }
+  .proj {
+    position: relative; border: 1px solid var(--line); border-radius: 6px;
+    padding: 28px; display: grid; gap: 32px;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: start;
+  }
+  .proj.flip { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
+  .proj.flip .media { order: 2; }
+  .proj-tag {
+    position: absolute; top: -10px; left: 20px; padding: 0 8px; background: var(--bg);
+    font: 12px/20px var(--mono); color: var(--muted); white-space: nowrap;
+  }
+  .proj-tag b { color: var(--teal); font-weight: 500; }
+  .media { display: grid; gap: 12px; min-width: 0; }
+  .shot {
+    border: 1px solid var(--shot-ring); border-radius: 6px; overflow: hidden; background: var(--raised);
+  }
+  .shot .chrome {
+    display: flex; gap: 10px; align-items: center; padding: 6px 10px; font: 11px var(--mono); color: var(--muted);
+    border-bottom: 1px solid var(--shot-ring);
+  }
+  .shot .chrome i { font-style: normal; color: var(--line); letter-spacing: 1px; }
+  .shot img { width: 100%; height: auto; }
+  .stack-shots { position: relative; }
+  .phone {
+    position: absolute; right: -10px; bottom: -18px; width: 24%; min-width: 92px; height: auto;
+    border: 1px solid var(--shot-ring); border-radius: 12px; overflow: hidden; background: var(--raised);
+    box-shadow: 0 12px 30px -12px rgb(0 0 0 / .55);
+  }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .caption { font: 12px var(--mono); color: var(--muted); margin: 0; }
+
+  .body { display: grid; gap: 16px; min-width: 0; }
+  .status {
+    justify-self: start; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .08em;
+    color: var(--amber); border: 1px solid currentColor; border-radius: 3px; padding: 2px 7px;
+  }
+  h3 { font: 600 24px/1.2 var(--display); margin: 0; letter-spacing: -0.01em; }
+  .body > p { margin: 0; color: var(--muted); }
+  .facts { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; font-size: 15px; }
+  .facts li { display: grid; grid-template-columns: 18px 1fr; gap: 6px; }
+  .facts li::before { content: "›"; font-family: var(--mono); color: var(--teal); }
+  .facts strong { font-weight: 600; color: var(--fg); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; font: 12px var(--mono); color: var(--muted); }
+  .chips span::before { content: "["; color: var(--line); }
+  .chips span::after { content: "]"; color: var(--line); }
+  .links { display: flex; flex-wrap: wrap; gap: 18px; font: 500 14px var(--mono); }
+  .links a { text-decoration: none; color: var(--teal); border-bottom: 1px solid transparent; }
+  .links a:hover { border-bottom-color: currentColor; }
+
+  pre.ascii {
+    margin: 0; font: 12px/1.45 var(--mono); color: var(--fg); background: var(--surface);
+    border: 1px solid var(--line); border-radius: 6px; padding: 18px; overflow-x: auto;
+  }
+  pre.ascii .k { color: var(--teal); }
+  pre.ascii .a { color: var(--amber); }
+  pre.ascii .m { color: var(--muted); }
+
+  @media (max-width: 860px) {
+    .proj, .proj.flip { grid-template-columns: minmax(0, 1fr); padding: 22px 16px; }
+    .proj.flip .media { order: 0; }
+    .phone { right: 6px; bottom: -14px; }
+  }
+
+  /* other repos */
+  .others { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 40px; }
+  .other {
+    border: 1px dashed var(--line); border-radius: 6px; padding: 18px; display: grid; gap: 8px; align-content: start;
+  }
+  .other .t { font: 600 16px var(--display); }
+  .other p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* experience tree */
+  .tree { font: 14px/1.9 var(--mono); margin: 0; overflow-x: auto; }
+  .tree .row { display: grid; grid-template-columns: 28px 170px minmax(0, 1fr); gap: 4px 12px; }
+  .tree .br { color: var(--line); }
+  .tree .when { color: var(--amber); white-space: nowrap; }
+  .tree .what b { font-weight: 500; color: var(--fg); }
+  .tree .what span { color: var(--muted); }
+  .tree .detail { grid-column: 3; color: var(--muted); font-family: var(--body); font-size: 15px; line-height: 1.55; padding-bottom: 14px; }
+  @media (max-width: 640px) {
+    .tree .row { grid-template-columns: 22px minmax(0, 1fr); }
+    .tree .when { grid-column: 2; }
+    .tree .what, .tree .detail { grid-column: 2; }
+    .tree .br.sp { display: none; }
+  }
+
+  /* stack table */
+  .stack { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .stack th {
+    text-align: left; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .08em;
+    color: var(--muted); width: 190px; padding: 14px 16px 14px 0; vertical-align: top; white-space: nowrap;
+  }
+  .stack td { padding: 12px 0; }
+  .stack tr + tr th, .stack tr + tr td { border-top: 1px dashed var(--line); }
+  .stack td code { font: 13px var(--mono); background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 1px 6px; margin: 2px 4px 2px 0; display: inline-block; }
+  @media (max-width: 640px) {
+    .stack, .stack tbody, .stack tr, .stack th, .stack td { display: block; width: auto; }
+    .stack th { padding: 14px 0 4px; }
+    .stack td { padding: 0 0 10px; }
+    .stack tr + tr td { border-top: 0; }
+  }
+
+  /* contact */
+  .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+  .contact p { color: var(--muted); max-width: 52ch; margin: 0; }
+  .lines { display: grid; gap: 10px; font: 14px var(--mono); }
+  .line { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+  .line .k { color: var(--muted); width: 76px; }
+  .line a, .line .v { color: var(--fg); text-decoration: none; overflow-wrap: anywhere; }
+  .line a:hover { color: var(--teal); }
+  .copy { margin-left: auto; font: 12px var(--mono); color: var(--teal); background: none; border: 1px solid var(--line); border-radius: 3px; padding: 3px 8px; cursor: pointer; }
+  .copy:hover { border-color: var(--teal); }
+  @media (max-width: 760px) { .contact { grid-template-columns: minmax(0, 1fr); } }
+
+  footer { border-top: 1px solid var(--line); }
+  footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; gap: 8px 24px; font: 12px var(--mono); color: var(--muted); }
+  footer .wrap span:last-child { margin-left: auto; }
+</style>
+</head>
+<body>
+
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#topo"><b>~/</b>rafael.diniz</a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#projetos">projetos</a>
+      <a href="#trajetoria">trajetória</a>
+      <a href="#stack">stack</a>
+      <a href="#contato">contato</a>
+    </nav>
+    <button class="theme" id="theme" type="button" aria-label="Alternar tema claro e escuro">[ tema ]</button>
+  </div>
+</header>
+
+<main id="topo">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="prompt"><span class="u">rafael@recife</span>:<span class="p">~</span>$ whoami</p>
+        <h1>Rafael Diniz</h1>
+        <p class="role">desenvolvedor de sistemas · engenharia de dados</p>
+        <p class="lede">Estagiário de Engenharia de Dados no <strong>Grupo Fleury</strong> e formando em Ciência da Computação (dez/2026). Gosto de construir o sistema inteiro: banco, back-end, tempo real e interface. Busco uma oportunidade de crescimento profissional como desenvolvedor.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projetos">ver projetos ↓</a>
+          <a class="btn" href="https://github.com/Kayler-Rafa" target="_blank" rel="noopener">github ↗</a>
+          <a class="btn" href="https://www.linkedin.com/in/rafael-dinizz/" target="_blank" rel="noopener">linkedin ↗</a>
+          <a class="btn" id="cv-link" href="Rafael_Diniz_CV.pdf" target="_blank" rel="noopener">currículo.pdf ↗</a>
+        </div>
+      </div>
+      <div class="term" aria-hidden="true">
+        <div class="term-head"><span class="dots">●●●</span><span>pipeline.py</span><span class="path">jaboatão · pe</span></div>
+        <canvas id="field"></canvas>
+        <div class="term-foot">
+          <span>python <b>·</b> sql <b>·</b> typescript</span>
+          <span>api → etl → sql → ui</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="projetos">
+    <div class="wrap">
+      <div class="sh">
+        <p class="cmd"><span class="p">$</span> ls ~/projetos --destaques</p>
+        <h2>Projetos</h2>
+        <p class="note">Sistemas que construí de ponta a ponta, com código aberto no GitHub.</p>
+      </div>
+
+      <div class="projects">
+        <article class="proj">
+          <span class="proj-tag"><b>~/</b>dinizcord · ago 2026</span>
+          <div class="media">
+            <div class="stack-shots">
+              <figure class="shot" style="margin:0">
+                <div class="chrome"><i>■ □ ×</i>dinizcord.vercel.app</div>
+                <img src="assets/shots/dinizcord-chat.webp" width="1600" height="1000" loading="lazy" alt="Tela do DinizCord: canal de texto #geral com mensagens, canais de voz e lista de quem está online">
+              </figure>
+              <img class="phone" src="assets/shots/dinizcord-mobile.webp" width="520" height="1125" loading="lazy" alt="DinizCord no celular">
+            </div>
+          </div>
+          <div class="body">
+            <span class="status">open source · no ar</span>
+            <h3>DinizCord</h3>
+            <p>Plataforma privada de comunicação para grupos pequenos: canais de texto com histórico, voz, compartilhamento de tela e presença em tempo real. Cada grupo sobe a própria instância.</p>
+            <ul class="facts">
+              <li><span><strong>116 testes</strong> automatizados rodando contra PostgreSQL real, com CI no GitHub Actions.</span></li>
+              <li><span>Mensagens entre instâncias com <strong>LISTEN/NOTIFY</strong> do PostgreSQL e tabela de outbox, sem Redis.</span></li>
+              <li><span>Voz e tela em malha <strong>P2P via WebRTC</strong>; o servidor faz só a sinalização.</span></li>
+            </ul>
+            <div class="chips"><span>TypeScript</span><span>Next.js 16</span><span>React 19</span><span>PostgreSQL 17</span><span>Prisma</span><span>WebSocket</span><span>WebRTC</span><span>Docker</span></div>
+            <div class="links">
+              <a href="https://dinizcord.vercel.app" target="_blank" rel="noopener">→ ao vivo</a>
+              <a href="https://github.com/Kayler-Rafa/DinizCord" target="_blank" rel="noopener">→ código</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj flip">
+          <span class="proj-tag"><b>~/</b>fz-telemetry · jul 2026</span>
+          <div class="media">
+            <figure class="shot" style="margin:0">
+              <div class="chrome"><i>■ □ ×</i>fz-telemetry-dashboard.vercel.app</div>
+              <img src="assets/shots/fz-tracado.webp" width="1600" height="789" loading="lazy" alt="Traçado de Monza colorido pela velocidade, ao lado da telemetria de Norris e Verstappen">
+            </figure>
+            <figure class="shot" style="margin:0">
+              <img src="assets/shots/fz-podio.webp" width="1600" height="1000" loading="lazy" alt="Pódio da classificação do GP da Itália com tempos de volta, setores e distribuição da volta">
+            </figure>
+            <p class="caption">GP da Itália 2026 · classificação · dados reais da OpenF1</p>
+          </div>
+          <div class="body">
+            <span class="status">no ar</span>
+            <h3>FZ Telemetry</h3>
+            <p>Dashboard gratuito de telemetria de Fórmula 1 com dados reais de treinos, classificações e corridas.</p>
+            <ul class="facts">
+              <li><span>Traçado da pista colorido por <strong>velocidade, RPM, acelerador, freio e marcha</strong>.</span></li>
+              <li><span>Comparação de voltas entre dois pilotos, alinhada por distância na pista.</span></li>
+              <li><span>Back-end em <strong>FastAPI</strong> com SQLite como cache da API pública OpenF1.</span></li>
+              <li><span>O post de lançamento passou de <strong>10 mil impressões</strong> no LinkedIn.</span></li>
+            </ul>
+            <div class="chips"><span>Python</span><span>FastAPI</span><span>SQLite</span><span>React</span><span>TypeScript</span><span>Vite</span></div>
+            <div class="links">
+              <a href="https://fz-telemetry-dashboard.vercel.app" target="_blank" rel="noopener">→ ao vivo</a>
+              <a href="https://github.com/Kayler-Rafa/fz-telemetry-dashboard" target="_blank" rel="noopener">→ código</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj">
+          <span class="proj-tag"><b>~/</b>librars · 2026</span>
+          <div class="media">
+<pre class="ascii" aria-label="Diagrama da arquitetura do LibrARs"><span class="m">Navegador</span>
+  │
+  ├─ <span class="k">MediaPipe Hands</span> ──► <span class="k">KNN</span> ──► <span class="a">gesto confirmado</span>
+  │     <span class="m">21 pontos 3D/frame</span>      <span class="m">12 frames + 1,5 s</span>
+  │
+  ├─ REST + JWT ──────────────► <span class="k">Express</span>  /api/auth
+  │                               │      /api/gestures
+  │                           <span class="k">PostgreSQL 16</span>
+  │
+  └─ <span class="k">Socket.io</span>
+       ├─ salas de 2 pessoas  <span class="m">(código de 6 caracteres)</span>
+       ├─ sinalização WebRTC  <span class="m">(offer / answer / ice)</span>
+       └─ gesto ──────────────► par  <span class="a">◄── vídeo P2P</span></pre>
+            <p class="caption">arquitetura do README · toda a IA roda no navegador</p>
+          </div>
+          <div class="body">
+            <span class="status">em desenvolvimento</span>
+            <h3>LibrARs</h3>
+            <p>Aplicação web que reconhece gestos de Libras pela câmera em tempo real. O vídeo nunca sai do navegador: a visão computacional roda no próprio cliente.</p>
+            <ul class="facts">
+              <li><span>Reconhecimento com <strong>MediaPipe Hands</strong> e um classificador KNN próprio (k=3).</span></li>
+              <li><span>Treino de gestos novos no navegador, salvos por usuário no back-end.</span></li>
+              <li><span>Videochamada <strong>WebRTC P2P</strong> que envia ao par os gestos reconhecidos.</span></li>
+            </ul>
+            <div class="chips"><span>React 19</span><span>TypeScript</span><span>TensorFlow.js</span><span>MediaPipe</span><span>Node.js</span><span>Express</span><span>Socket.io</span><span>PostgreSQL</span><span>Docker Compose</span></div>
+            <div class="links">
+              <a href="https://github.com/Kayler-Rafa/LibrARs" target="_blank" rel="noopener">→ código</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj flip">
+          <span class="proj-tag"><b>~/</b>safeeye · 2025</span>
+          <div class="media">
+            <div class="duo">
+              <figure class="shot" style="margin:0">
+                <img src="assets/shots/safeye-prototipo.webp" width="900" height="800" loading="lazy" alt="Protótipo do SafeEye: placa com sensor infravermelho e LEDs posicionada junto ao olho">
+              </figure>
+<pre class="ascii" aria-label="Fluxo de dados do SafeEye">  <span class="k">[sensor IR]</span>
+       │ olho fechado
+       ▼    por segundos
+  <span class="k">[ ESP32 ]</span> ──► <span class="a">buzzer</span>
+       │     ──► <span class="a">LED</span>
+       │ Wi-Fi
+       ▼ JSON
+  <span class="k">[broker MQTT]</span>
+       │
+       ▼
+  monitoramento
+     remoto</pre>
+            </div>
+            <p class="caption">protótipo em teste · firmware em C++</p>
+          </div>
+          <div class="body">
+            <span class="status">protótipo · em equipe</span>
+            <h3>SafeEye</h3>
+            <p>Óculos que detectam sinais de sonolência em motoristas de caminhão durante longas viagens. Projeto embarcado feito em equipe na Faculdade Nova Roma.</p>
+            <ul class="facts">
+              <li><span>Sensor infravermelho detecta olhos fechados por alguns segundos e dispara <strong>alerta sonoro e visual</strong>.</span></li>
+              <li><span>Telemetria em JSON enviada por Wi-Fi para um <strong>broker MQTT</strong>.</span></li>
+            </ul>
+            <div class="chips"><span>C++</span><span>ESP32</span><span>MQTT</span><span>IoT</span></div>
+            <div class="links">
+              <a href="https://github.com/Kayler-Rafa/Safeye" target="_blank" rel="noopener">→ código</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="others">
+        <div class="other">
+          <span class="t">Drone autônomo</span>
+          <p>Simulação em PyBullet de um drone que faz entregas, replaneja a rota e volta à base. No fim do voo envia as métricas em JSON para um painel no Node-RED.</p>
+          <div class="chips"><span>Python</span><span>PyBullet</span><span>Node-RED</span></div>
+          <div class="links"><a href="https://github.com/Kayler-Rafa/Drone" target="_blank" rel="noopener">→ código</a></div>
+        </div>
+        <div class="other">
+          <span class="t">+40 repositórios</span>
+          <p>APIs REST, apps Kotlin, visão computacional, machine learning e trabalhos da faculdade.</p>
+          <div class="links"><a href="https://github.com/Kayler-Rafa?tab=repositories" target="_blank" rel="noopener">→ github.com/Kayler-Rafa</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trajetoria">
+    <div class="wrap">
+      <div class="sh">
+        <p class="cmd"><span class="p">$</span> tree ~/trajetoria</p>
+        <h2>Trajetória</h2>
+      </div>
+      <div class="tree" role="list">
+        <div class="row" role="listitem">
+          <span class="br">├──</span><span class="when">nov 2025 → hoje</span>
+          <span class="what"><b>Estagiário de Engenharia de Dados</b> <span>· Grupo Fleury · remoto</span></span>
+          <span class="detail">Construo e mantenho pipelines de dados (ETL) em Python e SQL com dados da área da saúde, e automatizo processos de dados no SQL Server.</span>
+        </div>
+        <div class="row" role="listitem">
+          <span class="br">├──</span><span class="when">jan 2024 → hoje</span>
+          <span class="what"><b>Monitor de Algoritmos</b> <span>· Faculdade Nova Roma</span></span>
+          <span class="detail">Apoio alunos de graduação em programação e algoritmos. Fui monitor nas atividades de TI do Fórum Acadêmico 2025.</span>
+        </div>
+        <div class="row" role="listitem">
+          <span class="br">├──</span><span class="when">mar 2023 → dez 2026</span>
+          <span class="what"><b>Bacharelado em Ciência da Computação</b> <span>· Faculdade Nova Roma</span></span>
+          <span class="detail">Formatura prevista para dezembro de 2026.</span>
+        </div>
+        <div class="row" role="listitem">
+          <span class="br">└──</span><span class="when">2020 → 2022</span>
+          <span class="what"><b>Técnico em Programação de Jogos Digitais</b> <span>· ETE Cícero Dias (NAVE)</span></span>
+          <span class="detail">Jogos e aplicações web; monitor de front-end, orientação a objetos e desenvolvimento de jogos.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="wrap">
+      <div class="sh">
+        <p class="cmd"><span class="p">$</span> cat stack.txt</p>
+        <h2>Stack</h2>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="stack">
+          <tbody>
+            <tr><th>linguagens</th><td><code>Python</code><code>TypeScript</code><code>JavaScript</code><code>SQL</code><code>C++</code></td></tr>
+            <tr><th>back-end</th><td><code>FastAPI</code><code>Node.js</code><code>Express</code><code>APIs REST</code><code>WebSocket</code></td></tr>
+            <tr><th>front-end</th><td><code>React</code><code>Next.js</code><code>Vite</code><code>Tailwind CSS</code></td></tr>
+            <tr><th>dados</th><td><code>SQL Server</code><code>PostgreSQL</code><code>SQLite</code><code>Prisma</code><code>pipelines ETL</code></td></tr>
+            <tr><th>entrega</th><td><code>Docker</code><code>GitHub Actions</code><code>Vitest</code><code>Git</code><code>Linux</code></td></tr>
+            <tr><th>certificações</th><td>NDG Linux Essentials · Cisco (2023) · Edge Side Include Injection · Tempest (2026)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="wrap">
+      <div class="contact">
+        <div class="sh" style="margin:0">
+          <p class="cmd"><span class="p">$</span> ./contato.sh</p>
+          <h2>Vamos conversar</h2>
+          <p class="note">Moro em Jaboatão dos Guararapes, na Grande Recife, e topo vagas presenciais, híbridas ou remotas.</p>
+        </div>
+        <div class="lines">
+          <div class="line"><span class="k">e-mail</span><span class="v" id="email">rafaeldinizcruz@gmail.com</span><button class="copy" id="copy" type="button">copiar</button></div>
+          <div class="line"><span class="k">linkedin</span><a href="https://www.linkedin.com/in/rafael-dinizz/" target="_blank" rel="noopener">linkedin.com/in/rafael-dinizz</a></div>
+          <div class="line"><span class="k">github</span><a href="https://github.com/Kayler-Rafa" target="_blank" rel="noopener">github.com/Kayler-Rafa</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Rafael Diniz Bezerra Cruz</span>
+    <span>Recife · PE</span>
+  </div>
+</footer>
+
+<script>
+  // Theme toggle: explicit choice wins over the system setting.
+  (function () {
+    var root = document.documentElement;
+    try { var saved = localStorage.getItem("rd-theme"); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
+    document.getElementById("theme").addEventListener("click", function () {
+      var cur = root.getAttribute("data-theme") ||
+        (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      var next = cur === "light" ? "dark" : "light";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("rd-theme", next); } catch (e) {}
+    });
+  })();
+
+  // Copy e-mail; fall back to selecting the text.
+  document.getElementById("copy").addEventListener("click", function () {
+    var el = document.getElementById("email"), btn = this;
+    var done = function () { btn.textContent = "copiado"; setTimeout(function () { btn.textContent = "copiar"; }, 1600); };
+    var select = function () { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(el.textContent).then(done, select);
+    } else { select(); }
+  });
+
+  // Inside an embedded viewer a file link does nothing, so hide it there.
+  if (window.self !== window.top) document.getElementById("cv-link").hidden = true;
+
+  // ASCII field: a slow "data flow" drawn with characters, tinted by theme tokens.
+  (function () {
+    var cv = document.getElementById("field");
+    var ctx = cv.getContext("2d");
+    var ramp = " .·:-=+*#%@";
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var cell = 12, cols = 0, rows = 0, dpr = 1, raf = 0, t0 = performance.now();
+    var tokens = {};
+    function readTokens() {
+      var s = getComputedStyle(document.documentElement);
+      tokens.teal = s.getPropertyValue("--teal").trim();
+      tokens.amber = s.getPropertyValue("--amber").trim();
+      tokens.bg = s.getPropertyValue("--surface").trim();
+    }
+    function size() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var w = cv.clientWidth, h = cv.clientHeight;
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cell = w < 420 ? 10 : 12;
+      cols = Math.ceil(w / (cell * 0.62)); rows = Math.ceil(h / cell);
+      ctx.font = cell + "px 'JetBrains Mono', ui-monospace, monospace";
+      ctx.textBaseline = "top";
+    }
+    var labels = ["api", "etl", "sql", "ui"];
+    function frame(now) {
+      var t = (now - t0) / 1000;
+      var w = cv.clientWidth, h = cv.clientHeight, cw = cell * 0.62;
+      ctx.fillStyle = tokens.bg; ctx.fillRect(0, 0, w, h);
+      for (var y = 0; y < rows; y++) {
+        for (var x = 0; x < cols; x++) {
+          var nx = x / cols, ny = y / rows;
+          // a band that flows left to right, like rows moving through a pipeline
+          var band = Math.exp(-Math.pow((ny - 0.5 - 0.18 * Math.sin(nx * 5.2 + t * 0.6)) * 3.1, 2));
+          var ripple = 0.5 + 0.5 * Math.sin(nx * 24 - t * 2.2 + Math.sin(ny * 7 + t * 0.4) * 1.4);
+          var v = band * (0.35 + 0.65 * ripple);
+          var i = Math.min(ramp.length - 1, Math.floor(v * ramp.length));
+          if (i <= 0) continue;
+          ctx.globalAlpha = 0.18 + v * 0.75;
+          ctx.fillStyle = tokens.teal;
+          ctx.fillText(ramp[i], x * cw, y * cell);
+        }
+      }
+      // pipeline stage markers along the band
+      ctx.globalAlpha = 1;
+      for (var k = 0; k < labels.length; k++) {
+        var px = (0.12 + k * 0.25);
+        var py = 0.5 + 0.18 * Math.sin(px * 5.2 + t * 0.6);
+        var gx = Math.round(px * cols), gy = Math.round(py * rows);
+        var txt = "[" + labels[k] + "]";
+        ctx.fillStyle = tokens.bg;
+        ctx.fillRect(gx * cw - 2, gy * cell - 1, txt.length * cw + 4, cell + 2);
+        ctx.fillStyle = tokens.amber;
+        ctx.fillText(txt, gx * cw, gy * cell);
+      }
+      if (!reduce) raf = requestAnimationFrame(frame);
+    }
+    function start() { cancelAnimationFrame(raf); readTokens(); size(); raf = requestAnimationFrame(frame); }
+    start();
+    addEventListener("resize", start);
+    new MutationObserver(start).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    matchMedia("(prefers-color-scheme: light)").addEventListener("change", start);
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) cancelAnimationFrame(raf); else if (!reduce) raf = requestAnimationFrame(frame);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(start);
+  })();
+</script>
+
+</body>
+</html>
