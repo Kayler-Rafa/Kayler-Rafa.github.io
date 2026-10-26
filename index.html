@@ -12,33 +12,27 @@
 <style>
   /* Layout: a terminal session that reads like a datasheet — shell prompts head each section,
      box-drawing frames hold the work, one live ASCII field in the hero. */
+  /* Light is the default for every visitor; dark only when chosen with the toggle. */
   :root {
-    --bg: #0b1322;
-    --surface: #0f1a2d;
-    --raised: #14223a;
-    --line: #22344f;
-    --fg: #e6ecf4;
-    --muted: #8a9bb3;
-    --teal: #2dd4bf;
-    --amber: #f5b83d;
-    --shot-ring: #2b4163;
+    --bg: #f2f4f7;
+    --surface: #ffffff;
+    --raised: #e9eef5;
+    --line: #cdd6e2;
+    --fg: #0e1a2b;
+    --muted: #52627a;
+    --teal: #0b7d72;
+    --amber: #9a5f00;
+    --shot-ring: #b9c6d8;
     --display: "Martian Mono", "JetBrains Mono", ui-monospace, monospace;
     --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
     --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
     --wrap: 1120px;
-    color-scheme: dark;
-  }
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-      --bg: #f2f4f7; --surface: #ffffff; --raised: #e9eef5; --line: #cdd6e2;
-      --fg: #0e1a2b; --muted: #52627a; --teal: #0b7d72; --amber: #9a5f00; --shot-ring: #b9c6d8;
-      color-scheme: light;
-    }
-  }
-  :root[data-theme="light"] {
-    --bg: #f2f4f7; --surface: #ffffff; --raised: #e9eef5; --line: #cdd6e2;
-    --fg: #0e1a2b; --muted: #52627a; --teal: #0b7d72; --amber: #9a5f00; --shot-ring: #b9c6d8;
     color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1322; --surface: #0f1a2d; --raised: #14223a; --line: #22344f;
+    --fg: #e6ecf4; --muted: #8a9bb3; --teal: #2dd4bf; --amber: #f5b83d; --shot-ring: #2b4163;
+    color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
@@ -541,9 +535,7 @@
     var root = document.documentElement;
     try { var saved = localStorage.getItem("rd-theme"); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
     document.getElementById("theme").addEventListener("click", function () {
-      var cur = root.getAttribute("data-theme") ||
-        (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-      var next = cur === "light" ? "dark" : "light";
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
       root.setAttribute("data-theme", next);
       try { localStorage.setItem("rd-theme", next); } catch (e) {}
     });
